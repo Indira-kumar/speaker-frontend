@@ -25,10 +25,7 @@ const SignInUp = () => {
         name: response.profileObj.name,
         phone: "null",
         email: response.profileObj.email,
-        provider: "GOOGLE",
-        isSubscribed: false,
-        occupation: "null",
-        age: "null",
+        provider: "google"
       })
       .then((data) => {
         console.log("Success", data?.data);
@@ -61,10 +58,7 @@ const SignInUp = () => {
           name: name,
           phone: phone,
           email: email,
-          provider: provide,
-          isSubscribed: false,
-          occupation: "",
-          age: "",
+          provider: "email",
         })
         .then((data) => {
           console.log("Success", data?.data);

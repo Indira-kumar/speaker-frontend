@@ -18,13 +18,13 @@ export default function Addeventpage() {
   const [AudienceType, setAudienceType] = useState();
   const [AudienceSize, setAudienceSize] = useState();
   const [Categories, setCategories] = useState();
-  const [paymentTerm, setpaymentTerm] = useState();
+  const [engagementTerm, setengagementTerm] = useState();
   // const [eventIncludes, seteventIncludes] = useState();
   // const [contact, setcontact] = useState("");
   const [cname, setcname] = useState();
   const [cemail, setcemail] = useState();
   const [cphone, setcphone] = useState();
-  const [sessionType, setsessionType] = useState();
+  const [eventType, seteventType] = useState();
   const [tags, settags] = useState();
   const [isExclusive, setisExclusive] = useState();
 
@@ -37,28 +37,25 @@ export default function Addeventpage() {
   const handleEventCreate = (e) => {
     e.preventDefault();
     const data = {
-      name: name,
-      country: location,
+      eventName: name,
       start_time: start_time || "",
       end_time: end_time || "2025-09-01T04:49:42.144Z",
       website: eventSite,
       mode: mode,
       topic: topic,
       location: location,
-      paymentTerm: paymentTerm,
-      sessionType: sessionType,
-      AudienceType: AudienceType,
-      AudienceSize: AudienceSize,
+      engagementTerm: engagementTerm,
+      eventType: eventType,
+      audienceType: AudienceType,
+      audienceSize: AudienceSize,
       tags: tags,
       description: Description,
       detailedDescription: DetailedDescription,
       categories: Categories,
       isExclusive: isExclusive,
-      contact: {
-        name: cname,
-        email: cemail,
-        phone: cphone,
-      },
+      contactName: cname,
+      contactMail: cemail,
+      contactPhone: cphone,
       isApproved: false,
     };
     axios
@@ -189,8 +186,8 @@ export default function Addeventpage() {
                           paddingBottom: "0",
                           color: "grey",
                         }}
-                        onChange={(e) => setpaymentTerm(e.target.value)}
-                        value={paymentTerm}
+                        onChange={(e) => setengagementTerm(e.target.value)}
+                        value={engagementTerm}
                       >
                         {/* <option value="Online" selected>Choose Mode</option> */}
                         {/* <option value="Paid" selected>
@@ -285,8 +282,8 @@ export default function Addeventpage() {
                           paddingBottom: "0",
                           color: "grey",
                         }}
-                        value={sessionType}
-                        onChange={(e) => setsessionType(e.target.value)}
+                        value={eventType}
+                        onChange={(e) => seteventType(e.target.value)}
                       >
                         <option value="Conference">Conference</option>
                         <option value="Summit">Summit</option>
@@ -333,7 +330,7 @@ export default function Addeventpage() {
                           className="mpes-input"
                           placeholder="first"
                           value={tags}
-                          onChange={(e) => settags(e.target.value.split(","))}
+                          onChange={(e) => settags(e.target.value)}
                         />
                       </div>
                     </div>

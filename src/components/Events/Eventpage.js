@@ -159,7 +159,7 @@ const Eventpage = () => {
       <ToastContainer />
       <div className="mp-parent" style={{ background: "none", marginTop: "0" }}>
         {console.log(userdata?.role, userdata?.subscribed)}
-        {userdata?.subscribed && userdata?.role === "MODERATOR" ? (
+        {userdata?.subscribed || userdata?.role === "MODERATOR" ? (
           <div className="mp-left">
             <div className="search-ticket">
               <div className="st-upper">
