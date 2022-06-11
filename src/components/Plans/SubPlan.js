@@ -62,8 +62,8 @@ const SubPlan = () => {
         console.log(err);
       });
   };
-  async function showRazorpay(price,id) {
-      localStorage.setItem("@planId",id)
+  async function showRazorpay(price, id) {
+    localStorage.setItem("@planId", id);
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -120,22 +120,31 @@ const SubPlan = () => {
                     <p>{data?.name}</p>
                     <div style={{ height: "15rem" }}></div>
                     <p>Rs. {data?.price}/-</p>
-                    {
-                      user_token ? <div className="eprbtn1" onClick={()=>showRazorpay(data?.price,data?.id)}>
-                      BUY NOW
-                    </div> : <Button href="/login" sx={{
-                      fontSize: 'small',
-                      backgroundColor: '#ffbf19',
-                      marginTop: '2rem',
-                      padding: '0.5rem',
-                      borderRadius: '5px',
-                      fontWeight: '500',
-                      marginBottom: '0.5rem',
-                      width: '100%',
-                      color: '#333'
-                    }}>BUY NOW</Button>
-                    }
-                    
+                    {user_token ? (
+                      <div
+                        className="eprbtn1"
+                        onClick={() => showRazorpay(data?.price, data?.id)}
+                      >
+                        BUY NOW
+                      </div>
+                    ) : (
+                      <Button
+                        href="/login"
+                        sx={{
+                          fontSize: "small",
+                          backgroundColor: "#ffbf19",
+                          marginTop: "2rem",
+                          padding: "0.5rem",
+                          borderRadius: "5px",
+                          fontWeight: "500",
+                          marginBottom: "0.5rem",
+                          width: "100%",
+                          color: "#333",
+                        }}
+                      >
+                        BUY NOW
+                      </Button>
+                    )}
                   </div>
                 );
               })}

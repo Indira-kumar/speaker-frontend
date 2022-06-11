@@ -65,7 +65,7 @@ const Exevent = () => {
   console.log(userToken, "startTime");
   const userEvents = () => {
     axios
-      .get(`${process.env.REACT_APP_URL}/events/all`, {
+      .get(`${process.env.REACT_APP_URL}/events`, {
         headers: {
           Authorization: `Bearer ${userToken?.token}`,
         },

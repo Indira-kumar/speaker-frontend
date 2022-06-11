@@ -22,27 +22,33 @@ export default function Index() {
     localStorage.setItem("@image", URL.createObjectURL(event.target.files[0]));
     setImages(URL.createObjectURL(event.target.files[0]));
   };
-  useEffect(() => {
+
+  const fetchEvents = () => {
     axios
-      .get(`${process.env.REACT_APP_URL}/events/all`, {
+      .get(`${process.env.REACT_APP_URL}/events`, {
         headers: {
           Authorization: `Bearer ${userToken?.token}`,
         },
       })
       .then((data) => {
         console.log(data?.data);
-        const dd = data?.data?.filter((data) => data?.isExclusive == true);
+        const dd = data?.data?.filter((data) => data?.isApproved == false);
         setFilterData(dd);
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    fetchEvents();
   }, []);
+
   const [plandta, setplandata] = useState("");
   const handleEdit = () => {
     const data = {
       phone: phone || userdata.phone,
-      isSubscribed: true,
+      isSubscribed: userdata.isSubscribed,
       email: email || userdata.email,
       name: name || userdata.name,
       occupation: occupation || userdata.occupation,
@@ -64,6 +70,8 @@ export default function Index() {
       .then((data) => {
         if (data?.data) {
           toast.dark("User updated successfully");
+          userToken.userdata = data?.data;
+          localStorage.setItem("@token", JSON.stringify(userToken));
         }
         console.log(data);
       })
@@ -90,6 +98,42 @@ export default function Index() {
   const handleLogout = () => {
     localStorage.clear("@token");
     navigate("/login");
+  };
+
+  const approveEvent = (id) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}/events/approve/${id}`, "", {
+        headers: {
+          Authorization: `Bearer ` + userToken?.token,
+        },
+      })
+      .then((data) => {
+        console.log(data, "dfghjk", userToken?.token);
+        if (data?.data) {
+          toast.dark("Event approved successfully");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const rejectEvent = (id) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}/events/reject/${id}`, "", {
+        headers: {
+          Authorization: `Bearer ` + userToken?.token,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        if (data?.data) {
+          toast.dark("Event rejected successfully");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -440,7 +484,7 @@ export default function Index() {
               {filterData?.length > 0 &&
                 filterData?.map((data) => {
                   return (
-                    <div className="md-card-parent">
+                    <div key={data?.id} className="md-card-parent">
                       <div className="mdcp-header">
                         <h4>{data?.name}</h4>
                         <div>
@@ -481,6 +525,26 @@ export default function Index() {
                           </div>
                         </div>
                         <div style={{}}>{data?.mode}</div>
+                      </div>
+                      <br />
+                      <div className="approve">
+                        <button
+                          onClick={() => {
+                            approveEvent(data?.id);
+                            fetchEvents();
+                          }}
+                          style={{ marginRight: "0.8rem" }}
+                        >
+                          Approve
+                        </button>
+                        <button
+                          onClick={() => {
+                            rejectEvent(data?.id);
+                            fetchEvents();
+                          }}
+                        >
+                          Reject
+                        </button>
                       </div>
                     </div>
                   );

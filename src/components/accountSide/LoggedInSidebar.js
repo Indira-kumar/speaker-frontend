@@ -6,23 +6,23 @@ import "../css/About2.css";
 function LoggedInSidebar({ setisExclusive }) {
   const [userData, setUser] = useState("");
   const isLoggedin = JSON.parse(localStorage.getItem("@token"))?.userdata;
-  useEffect(() => {
-    if (userData) {
-      axios
-        .get(
-          `${process.env.REACT_APP_URL}/auth/get-loogedin/${
-            JSON.parse(localStorage.getItem("@token"))?.userdata?.id
-          }`
-        )
-        .then((data) => {
-          setUser(data?.data);
-          //console.log(isLoggedin);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (userData) {
+  //     axios
+  //       .get(
+  //         `${process.env.REACT_APP_URL}/auth/get-loogedin/${
+  //           JSON.parse(localStorage.getItem("@token"))?.userdata?.id
+  //         }`
+  //       )
+  //       .then((data) => {
+  //         setUser(data?.data);
+  //         //console.log(isLoggedin);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, []);
 
   let loginButtons = [];
 
@@ -191,7 +191,7 @@ function LoggedInSidebar({ setisExclusive }) {
         {loginButtons}
 
         {JSON.parse(localStorage.getItem("@token"))?.userdata && (
-          <a href="/single-event-ex">
+          <a href="/events">
             <div className="eprbtn2">SpeakerOre exclusive Events</div>
           </a>
         )}

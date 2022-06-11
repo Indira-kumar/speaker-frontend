@@ -9,7 +9,8 @@ export default function Addeventpage() {
   const [name, setName] = useState("");
   const [start_time, setstart_time] = useState("");
   const [end_time, setend_time] = useState("");
-  const [about, setabout] = useState("");
+  const [Description, setDescription] = useState("");
+  const [DetailedDescription, setDetailedDescription] = useState("");
   const [location, setlocation] = useState("");
   const [mode, setMode] = useState();
   const [topic, setTopic] = useState();
@@ -18,8 +19,8 @@ export default function Addeventpage() {
   const [AudienceSize, setAudienceSize] = useState();
   const [Categories, setCategories] = useState();
   const [paymentTerm, setpaymentTerm] = useState();
-  const [eventIncludes, seteventIncludes] = useState();
-  const [contact, setcontact] = useState("");
+  // const [eventIncludes, seteventIncludes] = useState();
+  // const [contact, setcontact] = useState("");
   const [cname, setcname] = useState();
   const [cemail, setcemail] = useState();
   const [cphone, setcphone] = useState();
@@ -37,28 +38,28 @@ export default function Addeventpage() {
     e.preventDefault();
     const data = {
       name: name,
-      street: "091 Willms Via",
-      state: "Louisiana",
       country: location,
       start_time: start_time || "",
       end_time: end_time || "2025-09-01T04:49:42.144Z",
-      email: "Colt36@hotmail.com",
-      about: about,
-      city: "Justinetown",
-      postalCode: "56525",
       website: eventSite,
       mode: mode,
       topic: topic,
       location: location,
       paymentTerm: paymentTerm,
-      eventIncludes: eventIncludes,
-      contact: contact,
       sessionType: sessionType,
       AudienceType: AudienceType,
+      AudienceSize: AudienceSize,
       tags: tags,
-      description:
-        "Praesentium omnis et dolore omnis dolores. Tempora non ut rem. Aut et beatae quisquam. Non eius nobis et eum porro qui facilis possimus ab.",
-      categories: ["et", "minus", "dolorum", "ipsa"],
+      description: Description,
+      detailedDescription: DetailedDescription,
+      categories: Categories,
+      isExclusive: isExclusive,
+      contact: {
+        name: cname,
+        email: cemail,
+        phone: cphone,
+      },
+      isApproved: false,
     };
     axios
       .post(`${process.env.REACT_APP_URL}/events`, data, {
@@ -170,12 +171,14 @@ export default function Addeventpage() {
                         onChange={(e) => setAudienceSize(e.target.value)}
                         value={AudienceSize}
                       />
-                      <p>Categories</p>
+                      <p>Categories (separated by ,)</p>
                       <input
                         type="text"
                         className="mpes-input"
                         placeholder="Write Here"
-                        onChange={(e) => setCategories(e.target.value)}
+                        onChange={(e) =>
+                          setCategories(e.target.value.split(","))
+                        }
                         value={Categories}
                       />
                       <p>Engagement Terms </p>
@@ -215,8 +218,8 @@ export default function Addeventpage() {
                           padding: "0.5rem",
                           marginBottom: "1rem",
                         }}
-                        value={eventIncludes}
-                        onChange={(e) => seteventIncludes(e.target.value)}
+                        value={Description}
+                        onChange={(e) => setDescription(e.target.value)}
                         res
                       ></textarea>
                       <p>Detailed Event Description (500 words)</p>
@@ -230,8 +233,8 @@ export default function Addeventpage() {
                           marginBottom: "1rem",
                         }}
                         res
-                        value={about}
-                        onChange={(e) => setabout(e.target.value)}
+                        value={DetailedDescription}
+                        onChange={(e) => setDetailedDescription(e.target.value)}
                       ></textarea>
                       <p>Contact Information:</p>
                       {/* <input
@@ -323,24 +326,16 @@ export default function Addeventpage() {
                         <option value="HRs">HRs</option>
                         <option value="Others">Others</option>
                       </select>
-                      <p>Tags</p>
+                      <p>Tags (separated by ,)</p>
                       <div className="tag-div">
                         <input
                           type="text"
                           className="mpes-input"
                           placeholder="first"
                           value={tags}
-                          onChange={(e) => settags(e.target.value)}
+                          onChange={(e) => settags(e.target.value.split(","))}
                         />
-                        <button>ADD</button>
                       </div>
-                      <ul className="tags-parent">
-                        <li>first</li>
-                        <li>second</li>
-                        <li>third</li>
-                        <li>fourth</li>
-                        <li>fifth</li>
-                      </ul>
                     </div>
                   </div>
                   <div className="confirmation">

@@ -6,24 +6,28 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import withRouter from "../withRouter";
 
-function Navbar( props  ) {
-  console.log( props )
+function Navbar(props) {
+  console.log(props);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   // const token = JSON.parse(localStorage.getItem("@token"))?.token;
 
- const [ userdata, setUserdata ] =  useState( JSON.parse(localStorage.getItem("@token")) );
- 
-  useEffect( () => {
-    setUserdata( JSON.parse(localStorage.getItem("@token")) );
+  const [userdata, setUserdata] = useState(
+    JSON.parse(localStorage.getItem("@token"))
+  );
+
+  useEffect(() => {
+    setUserdata(JSON.parse(localStorage.getItem("@token")));
   }, []);
 
- const [ token, setToken ] =  useState( JSON.parse(localStorage.getItem("@token"))?.token );
- useEffect( () => {
-   setToken( JSON.parse(localStorage.getItem("@token"))?.token );
- }, []);
+  const [token, setToken] = useState(
+    JSON.parse(localStorage.getItem("@token"))?.token
+  );
+  useEffect(() => {
+    setToken(JSON.parse(localStorage.getItem("@token"))?.token);
+  }, []);
 
   const style = {
     position: "absolute",
@@ -49,7 +53,7 @@ function Navbar( props  ) {
             <li>
               {userdata?.role === "MODERATOR" ? (
                 <>
-                    <a href="/mod-event">Events</a>
+                  <a href="/events">Events</a>
                 </>
               ) : (
                 <>
@@ -65,9 +69,7 @@ function Navbar( props  ) {
             </li>
             {token ? (
               <li className="navright">
-                <a href="/myprofile">
-                  My Profile
-                </a>
+                <a href="/myprofile">My Profile</a>
               </li>
             ) : (
               <li className="navright">
@@ -117,4 +119,4 @@ function Navbar( props  ) {
     </>
   );
 }
-export default withRouter( Navbar );
+export default withRouter(Navbar);

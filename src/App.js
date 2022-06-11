@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import "./components/css/global.css";
 import Addeventpage from "./components/Events/Addeventpage";
 import Navbar from "./components/Header/Navbar";
 import Firstpage from "./components/Home/Firstpage";
@@ -66,47 +67,49 @@ const App = () => {
           <Route path="/404" element={<PurchaseError />} />
           <Route path="/500" element={<SigneEeror />} />
           <Route
-            path="/moderator"
-            element={<PrivateRoute component={ModeratorProfile} />}
-          />
-          <Route
             path="/myprofile"
             element={<PrivateRoute component={MyProfile} />}
           />
-          <Route path="/bill" element={<BillingInformation />} />
           <Route path="/bookmark" element={<BookmarkedEvent />} />
+          <Route path="/exevent/:id" element={<Exclusiveevent />} />
+          <Route
+            path="/event/:id"
+            element={<PrivateRoute component={SingleEventPage} />}
+          />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/login" element={<SignInUp />} />
+          <Route path="/subplan" element={<SubPlan />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+
+          {/* <Route path="/bill" element={<BillingInformation />} />
+          <Route
+            path="/moderator"
+            element={<PrivateRoute component={ModeratorProfile} />}
+          />
           <Route
             path="/basicinfo"
             element={<PrivateRoute component={BasicInfo} />}
           />
           <Route
-            path="/single-event/:id"
-            element={<PrivateRoute component={SingleEventPage} />}
+            path="/single-event-ex/:id"
+            element={<PrivateRoute component={SingleEventPageExclusive} />}
           />
           <Route
             path="/single-event-ex"
             element={<PrivateRoute component={SingleEventPageExclusive} />}
           />
-          <Route path="/faq" element={<Faq />} />
           <Route path="/myprofile-event" element={<MyProfileEvent />} />
-          <Route path="/login" element={<SignInUp />} />
-          <Route path="/subplan" element={<SubPlan />} />
           <Route path="/mod-dummy1" element={<ModeratorDummy1 />} />
           <Route path="/mod-dummy2" element={<ModeratorDummy2 />} />
           <Route path="/mod-dummy3" element={<ModeratorDummy3 />} />
           <Route path="/mod-dummy4" element={<ModeratorDummy4 />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/privacy" element={<Privacy />} />
           <Route path="/authorize" element={<Auth />} />
-          <Route path="/exclusiveevent" element={<Exclusiveevent />} />
-          <Route path="/exevent" element={<Exevent />} />
+          <Route path="/exevent" element={<Exevent />} /> */}
         </Routes>
-        
       </BrowserRouter>
       <Footer />
     </>
-
-  
   );
 };
 

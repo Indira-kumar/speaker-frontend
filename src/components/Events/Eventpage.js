@@ -19,87 +19,70 @@ import PurchaseError from "../../ErrorPages/purchaseError";
 const Eventpage = () => {
   console.log(JSON.parse(localStorage.getItem("@token")));
   const { userdata } = JSON.parse(localStorage.getItem("@token"));
-  //   let data =[
-  //     {
-  //         "id": 1,
-  //         "start_time": "2020-06-07T02:32:39.292Z",
-  //         "end_time": "2021-09-01T04:49:42.144Z",
-  //         "isLiked": false
-  //     },
-  //     {
-  //         "id": 2,
-  //         "start_time": "2020-06-08T02:32:39.292Z",
-  //         "end_time": "2021-09-01T04:49:42.144Z",
-  //         "isLiked": false
-  //     },
-  //     {
-  //         "id": 3,
-  //         "longitude": null,
-  //         "start_time": "2020-06-09T02:32:39.292Z",
-  //         "end_time": "2021-09-01T04:49:42.144Z",
 
-  //     },
-  //      {
-  //         "id": 4,
-  //         "longitude": null,
-  //         "start_time": "2020-06-06T02:32:39.292Z",
-  //         "end_time": "2021-09-01T04:49:42.144Z",
-
-  //     },
-  //   ]
-
-  // var startDate = new Date("2020-06-07T02:32:39.292Z");
-  // var endDate = new Date("2020-06-08T02:32:39.292Z");
-  // console.log(startDate , endDate)
-  // var resultProductData = data.filter(a => {
-  //   var date = new Date(a.start_time);
-  //   return (date >= startDate && date <= endDate);
-  // });
-  // console.log(resultProductData)
   const [search, setSearch] = useState("");
   const [isExclusive, setisExclusive] = useState(false);
   const [eventData, setEventData] = useState();
   const userToken = JSON.parse(localStorage.getItem("@token"));
   const [startTime, setstart_time] = useState("");
   const [endTime, setendTime] = useState("");
-  console.log(userToken, "startTime");
+
   const userEvents = () => {
-    axios
-      .get(`${process.env.REACT_APP_URL}/events/all`, {
-        headers: {
-          Authorization: `Bearer ${userToken?.token}`,
-        },
-      })
-      .then((d) => setEventData(d?.data))
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  var resultProductData = eventData?.filter((a) => {
-    var date = new Date(a.start_time);
-    return date >= startTime && date <= endTime;
-  });
-  console.log(resultProductData);
-  useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_URL}/events`, {
         headers: {
           Authorization: `Bearer ${userToken?.token}`,
         },
       })
-      .then((d) => setEventData(d?.data))
+      .then((d) => {
+        console.log("itsjustneohfo");
+        setEventData(d?.data?.filter((e) => e.isApproved));
+      })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
+
+  var resultProductData = eventData?.filter((a) => {
+    var date = new Date(a.start_time);
+    return date >= startTime && date <= endTime;
+  });
+  console.log(resultProductData);
+
   useEffect(() => {
-    if (
-      userToken?.userdata?.role === "USER" ||
-      userToken?.userdata?.role === "MODERATOR"
-    ) {
+    if (isExclusive) {
+      setEventData(eventData?.filter((e) => e.isExclusive));
+    } else {
+      userEvents();
+    }
+  }, [isExclusive]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_URL}/events`, {
+  //       headers: {
+  //         Authorization: `Bearer ${userToken?.token}`,
+  //       },
+  //     })
+  //     .then((d) => {
+  //       console.log(
+  //         d?.data?.filter((a) => {
+  //           return a.isApproved == true;
+  //         }),
+  //         "dfghyjuiuuytrrtgtrh"
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    if (userdata?.subscribed) {
       userEvents();
     }
   }, []);
+
   const handleBookmark = (id) => {
     const data = {};
     console.log(id);
@@ -127,6 +110,8 @@ const Eventpage = () => {
   var aquaticCreature1s = eventData?.filter(function (creature) {
     return creature.mode === mode;
   });
+
+  console.log(eventData, "asdfghjkl");
 
   // Modal Style
   const style = {
@@ -174,7 +159,7 @@ const Eventpage = () => {
       <ToastContainer />
       <div className="mp-parent" style={{ background: "none", marginTop: "0" }}>
         {console.log(userdata?.role, userdata?.subscribed)}
-        {userdata?.subscribed && userdata?.role !== "MODERATOR" ? (
+        {userdata?.subscribed && userdata?.role === "MODERATOR" ? (
           <div className="mp-left">
             <div className="search-ticket">
               <div className="st-upper">
@@ -196,7 +181,9 @@ const Eventpage = () => {
                     type="checkbox"
                     name="apply1"
                     value={isExclusive}
-                    onChange={(e) => setisExclusive(true)}
+                    onChange={(e) => {
+                      setisExclusive(e.target.checked);
+                    }}
                   />
                   <div className="stur-text">
                     <b className="s1">SpeakerOre Exclusive</b>
@@ -322,7 +309,13 @@ const Eventpage = () => {
                         </div>
                         <div className="ec-section4">{data?.description}</div>
                         <div className="ec-section5">
-                          <a href={`/single-event/${data?.id}`}>
+                          <a
+                            href={
+                              data.isExclusive
+                                ? `/exevent/${data?.id}`
+                                : `/event/${data?.id}`
+                            }
+                          >
                             <button
                               className="eprbtn2"
                               style={{

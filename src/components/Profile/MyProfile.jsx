@@ -11,20 +11,20 @@ export default function MyProfile() {
   const [userData, setUser] = useState("");
   const planId = localStorage.getItem("@planId");
   const loggedInData = JSON.parse(localStorage.getItem("@token"))?.userdata?.id;
-  console.log('processENV:', process.env );
-  useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_URL}/auth/get-loogedin/`
-      )
-      .then((data) => {
-        console.log('userdata:', data?.data);
-        setUser(data?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  console.log("processENV:", process.env);
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `${process.env.REACT_APP_URL}/auth/get-loogedin/`
+  //     )
+  //     .then((data) => {
+  //       console.log('userdata:', data?.data);
+  //       setUser(data?.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
   return (
     <>
       <div className="mp-parent">
