@@ -35,7 +35,6 @@ const Eventpage = () => {
         },
       })
       .then((d) => {
-        console.log("itsjustneohfo");
         setEventData(d?.data?.filter((e) => e.isApproved));
       })
       .catch((err) => {
@@ -99,17 +98,18 @@ const Eventpage = () => {
         console.log(err);
       });
   };
-  const filteredCountries = eventData?.filter((country) => {
-    return country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-  });
 
-  var aquaticCreatures = eventData?.filter(function (creature) {
-    return creature.isExclusive === isExclusive;
-  });
+  // const filteredCountries = eventData?.filter((country) => {
+  //   return country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+  // });
+
+  // var aquaticCreatures = eventData?.filter(function (creature) {
+  //   return creature.isExclusive === isExclusive;
+  // });
+  // var aquaticCreature1s = eventData?.filter(function (creature) {
+  //   return creature.mode === mode;
+  // });
   const [mode, setMode] = useState();
-  var aquaticCreature1s = eventData?.filter(function (creature) {
-    return creature.mode === mode;
-  });
 
   console.log(eventData, "asdfghjkl");
 
