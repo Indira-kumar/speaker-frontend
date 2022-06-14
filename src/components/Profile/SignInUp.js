@@ -19,7 +19,7 @@ const SignInUp = () => {
   const googleSuccessResponse = (response) => {
     // console.log(process.env);
 
-    console.log(response.profileObj.name);
+    console.log(response.profileObj);
     axios
       .post(`${process.env.REACT_APP_URL}/auth/login`, {
         name: response.profileObj.name,
