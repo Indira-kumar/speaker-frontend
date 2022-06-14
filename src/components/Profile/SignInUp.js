@@ -17,7 +17,7 @@ const SignInUp = () => {
   const navigate = useNavigate();
   // Google Response
   const googleSuccessResponse = (response) => {
-    console.log(process.env);
+    // console.log(process.env);
 
     console.log(response.profileObj.name);
     axios
@@ -75,8 +75,7 @@ const SignInUp = () => {
         });
     }
   };
-  const clientId1 =
-    "886137909534-jf2qdlp4o1b83p100ev2msaa83dsn1nl.apps.googleusercontent.com";
+  const clientId1 = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
   return (
     <div className="mp-parent" style={{ background: "none", marginTop: "0" }}>
