@@ -130,13 +130,19 @@ const SignInUp = () => {
                 >
                   SIGN - UP WITH GOOGLE
                 </div> */}
-                <GoogleLogin
+                {/* <GoogleLogin
                   clientId={clientId1}
                   buttonText="Login with Google"
                   onSuccess={googleSuccessResponse}
                   onFailure={googleFailureResponse}
                   cookiePolicy={"single_host_origin"}
-                />
+                /> */}
+                <div
+                  id="g_id_onload"
+                  data-client_id={clientId1}
+                  data-callback={googleSuccessResponse}
+                ></div>
+                <div className="g_id_signin" data-type="standard"></div>
 
                 <h3
                   style={{
@@ -189,13 +195,13 @@ const SignInUp = () => {
                 />
               </div>
               <div className="siubtn-parent">
-                <GoogleLogin
+                {/* <GoogleLogin
                   clientId={clientId1}
                   buttonText="Login with Google"
                   onSuccess={googleSuccessResponse}
                   onFailure={googleFailureResponse}
                   cookiePolicy={"single_host_origin"}
-                />
+                /> */}
                 <h3
                   style={{
                     color: "grey",
