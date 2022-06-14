@@ -75,7 +75,7 @@ const SignInUp = () => {
         });
     }
   };
-  const clientId1 = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+  const clientId1 = process.env.REACT_APP_GCLIENT_ID;
 
   return (
     <div className="mp-parent" style={{ background: "none", marginTop: "0" }}>
