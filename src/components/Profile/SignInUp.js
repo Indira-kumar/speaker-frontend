@@ -23,9 +23,8 @@ const SignInUp = () => {
     axios
       .post(`${process.env.REACT_APP_URL}/auth/login`, {
         name: response.profileObj.name,
-        phone: "null",
         email: response.profileObj.email,
-        provider: "google"
+        provider: "google",
       })
       .then((data) => {
         console.log("Success", data?.data);
@@ -56,7 +55,6 @@ const SignInUp = () => {
       axios
         .post(`${process.env.REACT_APP_URL}/auth/login`, {
           name: name,
-          phone: phone,
           email: email,
           provider: "email",
         })

@@ -37,6 +37,7 @@ export default function Addeventpage() {
   const handleEventCreate = (e) => {
     e.preventDefault();
     const data = {
+      userId: JSON.parse(localStorage.getItem("@token"))?.userdata?.id,
       eventName: name,
       start_time: start_time || "",
       end_time: end_time || "2025-09-01T04:49:42.144Z",
@@ -342,8 +343,9 @@ export default function Addeventpage() {
                         style={{ position: "initial" }}
                         className="apply1"
                         name="apply1"
-                        value={isExclusive}
-                        onChange={(e) => setisExclusive(e.target.value)}
+                        onChange={(e) => {
+                          setisExclusive(e.target.checked);
+                        }}
                       />
                       <div className="conu-text">
                         <div className="conu-text1">

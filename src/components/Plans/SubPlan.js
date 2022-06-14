@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoggedInSidebar from "../accountSide/LoggedInSidebar";
 import "../css/subPlan.css";
+import { ToastContainer, toast } from "react-toastify";
+
 function loadScript(src) {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -37,16 +39,14 @@ const SubPlan = () => {
         console.log(er);
       });
   }, []);
+
   const handleUpdate = () => {
     axios
-      .put(
-        `${process.env.REACT_APP_URL}/auth/update/${user_id}`,
+      .post(
+        `${process.env.REACT_APP_URL}/subscription/update`,
         {
-          provider: "GOOGLE",
-          name: userData?.name,
-          email: userData?.email,
-          role: userData?.role,
-          isSubscribed: userData?.subscribed ? userData?.subscribed : true,
+          planId: localStorage.getItem("@planId"),
+          userId: user_id,
         },
         {
           headers: {
@@ -57,6 +57,12 @@ const SubPlan = () => {
       .then((Data) => {
         // loadScript("https://checkout.razorpay.com/v1/checkout.js");
         console.log(Data);
+        const newtoken = JSON.parse(localStorage.getItem("@token"));
+        newtoken.userdata.subscribed = true;
+        newtoken.isSubscribed = true;
+        localStorage.setItem("@token", JSON.stringify(newtoken));
+        // success toast
+        toast.dark("Subscription Successful");
       })
       .catch((err) => {
         console.log(err);
@@ -75,10 +81,11 @@ const SubPlan = () => {
 
     await axios
       .post(
-        `${process.env.REACT_APP_URL}/payment`,
+        `${process.env.REACT_APP_URL}/subscription/payment`,
         {
           currency: "IN",
           amount: `${price}`,
+          id: `${id}`,
         },
         {
           headers: {
@@ -88,14 +95,12 @@ const SubPlan = () => {
       )
       .then((t) => setDatas(t?.data?.order_id));
     const options = {
-      key: "rzp_test_JKlI55UIjlPhVg",
+      key: "rzp_test_XYrif8dVNh3U02",
       currency: "INR",
       amount: price * 100,
       order_id: datas,
       handler: function (response) {
-        alert("Transaction successful", response);
         handleUpdate();
-        navigate("/events");
       },
     };
     const paymentObject = new window.Razorpay(options);
@@ -103,6 +108,7 @@ const SubPlan = () => {
   }
   return (
     <>
+      <ToastContainer />
       <div className="ep-parent">
         <div className="ep-left">
           <div className="epl-heading subplan-heading">
