@@ -18,7 +18,6 @@ const SignInUp = () => {
   // Google Response
   const googleSuccessResponse = (response) => {
     // console.log(process.env);
-
     console.log(response.profileObj);
     axios
       .post(`${process.env.REACT_APP_URL}/auth/login`, {
@@ -133,11 +132,10 @@ const SignInUp = () => {
                 </div> */}
                 <GoogleLogin
                   clientId={clientId1}
-                  buttonText="Sign In With Google"
+                  buttonText="Login with Google"
                   onSuccess={googleSuccessResponse}
                   onFailure={googleFailureResponse}
-                  cookiePolicy="single_host_origin"
-                  scope="profile email"
+                  cookiePolicy={"single_host_origin"}
                 />
 
                 <h3
@@ -193,11 +191,10 @@ const SignInUp = () => {
               <div className="siubtn-parent">
                 <GoogleLogin
                   clientId={clientId1}
-                  buttonText="Sign Up With Google"
+                  buttonText="Login with Google"
                   onSuccess={googleSuccessResponse}
                   onFailure={googleFailureResponse}
-                  cookiePolicy="single_host_origin"
-                  scope="profile email"
+                  cookiePolicy={"single_host_origin"}
                 />
                 <h3
                   style={{
