@@ -280,8 +280,8 @@ const Eventpage = () => {
                       <div className="event-card">
                         <div className="ec-section1">
                           <div className="eds1-l">
-                            <p className="e1">{data?.name}</p>
-                            <p className="e2">{data?.state}</p>
+                            <p className="e1">{data?.eventName}</p>
+                            <p className="e2">{data?.location}</p>
                           </div>
                           <div className="eds1-r">
                             <BsFillBookmarkFill />

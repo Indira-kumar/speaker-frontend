@@ -81,9 +81,9 @@ export default function SingleEventPage() {
             style={{ paddingBottom: "0", paddingRight: "0" }}
           >
             <div className="eib-left">
-              <div className="eibl-ename">{singleEventData?.name}</div>
+              <div className="eibl-ename">{singleEventData?.eventName}</div>
               <div className="eibl-eplace">
-                {singleEventData?.city}, {singleEventData?.country}
+                {singleEventData?.city}, {singleEventData?.location}
               </div>
               <div className="eibl-oname" style={{ marginBottom: "0.4rem" }}>
                 <span>Organiser Name: </span>
@@ -118,7 +118,9 @@ export default function SingleEventPage() {
                   <BsLink45Deg />
                 </span>
                 <span>Link:</span>
-                <span> {singleEventData?.website}</span>
+                <a style={{ color: "blue" }} href={singleEventData?.website}>
+                  <span> {singleEventData?.website}</span>
+                </a>
               </div>
             </div>
             {console.log(singleEventData, "singleEventDatasingleEventData")}
@@ -153,8 +155,8 @@ export default function SingleEventPage() {
                 <div className="event-card">
                   <div className="ec-section1">
                     <div className="eds1-l">
-                      <p className="e1">{data?.name}</p>
-                      <p className="e2">{data?.state}</p>
+                      <p className="e1">{data?.eventName}</p>
+                      <p className="e2">{data?.location}</p>
                     </div>
                     <div className="eds1-r">
                       <BsFillBookmarkFill />

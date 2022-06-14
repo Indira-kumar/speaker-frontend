@@ -125,9 +125,9 @@ export default function Exclusiveevent() {
               style={{ paddingBottom: "0", paddingRight: "0" }}
             >
               <div className="eib-left">
-                <div className="eibl-ename">{singleEventData?.name}</div>
+                <div className="eibl-ename">{singleEventData?.eventName}</div>
                 <div className="eibl-eplace">
-                  {singleEventData?.city}, {singleEventData?.country}
+                  {singleEventData?.city}, {singleEventData?.location}
                 </div>
                 <div className="eibl-oname" style={{ marginBottom: "0.4rem" }}>
                   <span>Organiser Name: </span>
@@ -177,7 +177,9 @@ export default function Exclusiveevent() {
                     <BsLink45Deg />
                   </span>
                   <span>Link:</span>
-                  <span> {singleEventData?.website}</span>
+                  <a style={{ color: "blue" }} href={singleEventData?.website}>
+                    <span> {singleEventData?.website}</span>
+                  </a>
                 </div>
               </div>
               {/* {console.log(singleEventData, "singleEventDatasingleEventData")} */}
