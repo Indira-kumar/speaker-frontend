@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../css/SignInUp.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth, provider } from "../../config/firebase";
+import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider} from "firebase/auth";
+import { auth, provider, providerFacebook } from "../../config/firebase";
 
 const SignInUp = () => {
   const [email, setEmail] = useState("");
@@ -116,6 +116,27 @@ const SignInUp = () => {
                   }}
                 >
                   Login with Google
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    signInWithPopup(auth, providerFacebook)
+                      .then((result) => {
+                        const credential = FacebookAuthProvider.credentialFromResult(result);
+                        const token = credential.accessToken;
+                        const user = result.user;
+                        console.log(user);
+                        googleSuccessResponse(user);
+                      })
+                      .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        const email = error.customData.email;
+                        const credential = FacebookAuthProvider.credentialFromError(error);
+                      });
+                  }}
+                >
+                  Login with Facebook
                 </button>
               </div>
             </form>

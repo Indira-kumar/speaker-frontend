@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider} from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore/lite";
 
@@ -42,3 +42,5 @@ export function signInwithGoogle() {
       // ...
     });
 }
+
+export const providerFacebook = new FacebookAuthProvider();
