@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import "../css/SignInUp.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import LoggedInSidebar from "../accountSide/LoggedInSidebar";
-import { GoogleLogin } from "react-google-login";
-
-import { Config } from "../Config";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth, provider } from "../../config/firebase";
 
 const SignInUp = () => {
   const [email, setEmail] = useState("");
@@ -17,12 +15,10 @@ const SignInUp = () => {
   const navigate = useNavigate();
   // Google Response
   const googleSuccessResponse = (response) => {
-    // console.log(process.env);
-    console.log(response.profileObj);
     axios
       .post(`${process.env.REACT_APP_URL}/auth/login`, {
-        name: response.profileObj.name,
-        email: response.profileObj.email,
+        name: response.displayName,
+        email: response.email,
         provider: "google",
         phone: "null",
       })
@@ -41,7 +37,6 @@ const SignInUp = () => {
       });
   };
   const googleFailureResponse = (response) => {
-    console.log(process.env);
     console.log(response);
   };
 
@@ -74,7 +69,6 @@ const SignInUp = () => {
         });
     }
   };
-  const clientId1 = process.env.REACT_APP_GCLIENT_ID;
 
   return (
     <div className="mp-parent" style={{ background: "none", marginTop: "0" }}>
@@ -137,12 +131,29 @@ const SignInUp = () => {
                   onFailure={googleFailureResponse}
                   cookiePolicy={"single_host_origin"}
                 /> */}
-                <div
-                  id="g_id_onload"
-                  data-client_id={clientId1}
-                  data-callback={googleSuccessResponse}
-                ></div>
-                <div className="g_id_signin" data-type="standard"></div>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    signInWithPopup(auth, provider)
+                      .then((result) => {
+                        const credential =
+                          GoogleAuthProvider.credentialFromResult(result);
+                        const token = credential.accessToken;
+                        const user = result.user;
+                        console.log(user);
+                        googleSuccessResponse(user);
+                      })
+                      .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        const email = error.customData.email;
+                        const credential =
+                          GoogleAuthProvider.credentialFromError(error);
+                      });
+                  }}
+                >
+                  Login with Google
+                </button>
 
                 <h3
                   style={{
