@@ -36,6 +36,7 @@ const SignInUp = () => {
         console.log("Error", err);
       });
   };
+
   const googleFailureResponse = (response) => {
     console.log(response);
   };
@@ -74,13 +75,8 @@ const SignInUp = () => {
     <div className="mp-parent" style={{ background: "none", marginTop: "0" }}>
       <div className="mp-left siu-left">
         <div className="siul-child">
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div className={tabs == 1 ? "mpl-heading " : ""}>
-              <p onClick={() => setTabs(1)}>Become a member now!</p>
-            </div>
-            <div className={tabs == 0 ? "mpl-heading " : ""}>
-              <p onClick={() => setTabs(0)}>Already a memeber? SIGN IN</p>
-            </div>
+          <div className={tabs == 0 ? "mpl-heading " : ""}>
+            <p onClick={() => setTabs(0)}>Login</p>
           </div>
 
           {message && (
@@ -94,43 +90,10 @@ const SignInUp = () => {
               {message}
             </p>
           )}
+
           {tabs === 0 && (
             <form>
-              <div className="siuinput-parent">
-                <p>Name</p>
-                <input
-                  type="text"
-                  className="siu-input"
-                  placeholder="enter your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="siuinput-parent">
-                <p>Email Address</p>
-                <input
-                  type="email"
-                  className="siu-input"
-                  placeholder="xyz@gmail.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-
               <div className="siubtn-parent">
-                {/* <div
-                  className="eprbtn2 siubtn1"
-                  onClick={(e) => handleSubmit(e, "GOOGLE")}
-                >
-                  SIGN - UP WITH GOOGLE
-                </div> */}
-                {/* <GoogleLogin
-                  clientId={clientId1}
-                  buttonText="Login with Google"
-                  onSuccess={googleSuccessResponse}
-                  onFailure={googleFailureResponse}
-                  cookiePolicy={"single_host_origin"}
-                /> */}
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -154,80 +117,6 @@ const SignInUp = () => {
                 >
                   Login with Google
                 </button>
-
-                <h3
-                  style={{
-                    color: "grey",
-                    margin: "2rem",
-                  }}
-                >
-                  OR
-                </h3>
-                <div
-                  className="eprbtn2 siubtn1"
-                  style={{ width: "fit-content" }}
-                  onClick={(e) => handleSubmit(e, "FACEBOOK")}
-                >
-                  SIGN IN
-                </div>
-              </div>
-            </form>
-          )}
-          {tabs === 1 && (
-            <form>
-              <div className="siuinput-parent">
-                <p>Name</p>
-                <input
-                  type="text"
-                  className="siu-input"
-                  placeholder="enter your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="siuinput-parent">
-                <p>Email Address</p>
-                <input
-                  type="email"
-                  className="siu-input"
-                  placeholder="xyz@gmail.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="siuinput-parent">
-                <p>Phone</p>
-                <input
-                  type="number"
-                  className="siu-input"
-                  placeholder="015675675"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </div>
-              <div className="siubtn-parent">
-                {/* <GoogleLogin
-                  clientId={clientId1}
-                  buttonText="Login with Google"
-                  onSuccess={googleSuccessResponse}
-                  onFailure={googleFailureResponse}
-                  cookiePolicy={"single_host_origin"}
-                /> */}
-                <h3
-                  style={{
-                    color: "grey",
-                    margin: "2rem",
-                  }}
-                >
-                  OR
-                </h3>
-                <div
-                  className="eprbtn2 siubtn1"
-                  style={{ width: "fit-content" }}
-                  onClick={(e) => handleSubmit(e, "FACEBOOK")}
-                >
-                  SIGN UP
-                </div>
               </div>
             </form>
           )}
