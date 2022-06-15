@@ -36,6 +36,29 @@ const SignInUp = () => {
         console.log("Error", err);
       });
   };
+  // Facebook Response
+  const facebookSuccessResponse = (response) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}/auth/login`, {
+        name: response.displayName,
+        email: response.email,
+        provider: "facebook",
+        phone: "null",
+      })
+      .then((data) => {
+        console.log("Success", data?.data);
+        localStorage.setItem("@token", JSON.stringify(data?.data));
+        if (data?.data?.userdata?.role === "MODERATOR") {
+          navigate("/myprofile", { replace: true });
+        }
+        // if (data?.data?.isSubscribed) {
+        else navigate("/events", { replace: true });
+        // }
+      })
+      .catch((err) => {
+        console.log("Error", err);
+      });
+  };
 
   const googleFailureResponse = (response) => {
     console.log(response);
@@ -117,16 +140,17 @@ const SignInUp = () => {
                 >
                   Login with Google
                 </button>
+                <br />
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     signInWithPopup(auth, providerFacebook)
                       .then((result) => {
                         const credential = FacebookAuthProvider.credentialFromResult(result);
-                        const token = credential.accessToken;
+                        const accessToken = credential.accessToken;
                         const user = result.user;
                         console.log(user);
-                        googleSuccessResponse(user);
+                        facebookSuccessResponse(user);
                       })
                       .catch((error) => {
                         const errorCode = error.code;
