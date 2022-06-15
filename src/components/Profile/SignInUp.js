@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import "../css/SignInUp.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider} from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+} from "firebase/auth";
 import { auth, provider, providerFacebook } from "../../config/firebase";
 
 const SignInUp = () => {
@@ -98,11 +102,11 @@ const SignInUp = () => {
     <div className="mp-parent" style={{ background: "none", marginTop: "0" }}>
       <div className="mp-left siu-left">
         <div className="siul-child">
-          <div className={tabs == 0 ? "mpl-heading " : ""}>
-            <p onClick={() => setTabs(0)}>Login</p>
-          </div>
+          {/* <div className={"mpl-heading"}> */}
+          <p className="login-text">Login</p>
+          {/* </div> */}
 
-          {message && (
+          {/* {message && (
             <p
               style={{
                 color: "red",
@@ -112,59 +116,62 @@ const SignInUp = () => {
             >
               {message}
             </p>
-          )}
+          )} */}
 
-          {tabs === 0 && (
-            <form>
-              <div className="siubtn-parent">
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    signInWithPopup(auth, provider)
-                      .then((result) => {
-                        const credential =
-                          GoogleAuthProvider.credentialFromResult(result);
-                        const token = credential.accessToken;
-                        const user = result.user;
-                        console.log(user);
-                        googleSuccessResponse(user);
-                      })
-                      .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        const email = error.customData.email;
-                        const credential =
-                          GoogleAuthProvider.credentialFromError(error);
-                      });
-                  }}
-                >
-                  Login with Google
-                </button>
-                <br />
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    signInWithPopup(auth, providerFacebook)
-                      .then((result) => {
-                        const credential = FacebookAuthProvider.credentialFromResult(result);
-                        const accessToken = credential.accessToken;
-                        const user = result.user;
-                        console.log(user);
-                        facebookSuccessResponse(user);
-                      })
-                      .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        const email = error.customData.email;
-                        const credential = FacebookAuthProvider.credentialFromError(error);
-                      });
-                  }}
-                >
-                  Login with Facebook
-                </button>
-              </div>
-            </form>
-          )}
+          {/* {tabs === 0 && ( */}
+          <form>
+            <div className="siubtn-parent">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  signInWithPopup(auth, provider)
+                    .then((result) => {
+                      const credential =
+                        GoogleAuthProvider.credentialFromResult(result);
+                      const token = credential.accessToken;
+                      const user = result.user;
+                      console.log(user);
+                      googleSuccessResponse(user);
+                    })
+                    .catch((error) => {
+                      const errorCode = error.code;
+                      const errorMessage = error.message;
+                      const email = error.customData.email;
+                      const credential =
+                        GoogleAuthProvider.credentialFromError(error);
+                    });
+                }}
+              >
+                Login with Google
+              </button>
+              <br />
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  signInWithPopup(auth, providerFacebook)
+                    .then((result) => {
+                      const credential =
+                        FacebookAuthProvider.credentialFromResult(result);
+                      const accessToken = credential.accessToken;
+                      const user = result.user;
+                      console.log(user);
+                      facebookSuccessResponse(user);
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                      const errorCode = error.code;
+                      const errorMessage = error.message;
+                      const email = error.customData.email;
+                      const credential =
+                        FacebookAuthProvider.credentialFromError(error);
+                    });
+                }}
+              >
+                Login with Facebook
+              </button>
+            </div>
+          </form>
+          {/* )} */}
         </div>
         <div className="siul-child">
           <div className="siul-child1">

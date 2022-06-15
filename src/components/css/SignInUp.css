@@ -34,6 +34,11 @@
   /* margin-bottom: 0.5rem; */
   text-align: left;
 }
+.login-text {
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+}
 .siuinput-parent .siu-input {
   padding: 0.8rem 1rem;
   width: 100%;
