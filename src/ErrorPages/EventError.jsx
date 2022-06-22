@@ -48,7 +48,7 @@ function EventError() {
         <div className="speaker">
           <img
             src={require("../components/images/EventsPage2.png")}
-            style={{ height: "100%" }}
+            style={{ height: "60%", marginTop:"20px" }}
             alt={""}
           />
           <div className="fp-text">

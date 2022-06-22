@@ -1,3 +1,6 @@
+*{
+  font-family: 'Montserrat','sans-serif';
+}
 .container {
   /* position: absolute; */
   width: 100%;
@@ -33,25 +36,35 @@
   font-family: roboto;
   font-size: 14px;
   padding-left: 32.5px;
+  transition: ease-out 0.5s;
 }
 
 .nav-ul li:hover {
-    font-weight: bold;
-    letter-spacing: 0.1rem;
-    transition: easeout 0.5s;
+    font-weight:700;
+    letter-spacing: 0.01rem;
+    font-size: 16px;
     /* text-shadow: 0px 0px 2px #ffbf19; */
 }
 .nav-ul li a:hover {
     font-size: 15px;
     transition: ease-in-out 0.5s;
 }
-.navright a {
+/* .navright a {
   float: right;
   padding-right: 110px;
   text-align: center;
-}
-.navright a:hover{
+} */
+.navright button {
+  float: right;
+  padding-right: 110px;
   padding-left: 5px;
+  text-align: center;
+  margin-right: 25px;
+  margin-top: 5px;
+  width: 30px;
+  font-size: 13px;
+}
+.navright button:hover{
   font-size: 15px;
   transition: ease-in-out 0.5s;
 }

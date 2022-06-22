@@ -107,7 +107,7 @@ button {
   margin-bottom: 0;
 }
 .fpae-heading {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 100;
   color: rgba(154, 150, 150, 1);
 }
@@ -121,12 +121,16 @@ button {
   text-align: center;
 }
 .fp-addevent .fpae-imgtext {
-  font-size: 5rem;
+  font-size: 3rem;
   color: #fff;
   margin-bottom: 1rem;
+  position: relative;
+  bottom: 140px;
 }
 .fp-addevent .fp-text .two {
   margin-bottom: 1rem;
+  position: relative;
+  bottom: 140px;
 }
 .box-count {
   position: absolute;

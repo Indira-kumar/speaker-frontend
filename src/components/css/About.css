@@ -1,13 +1,15 @@
 .about {
   padding: 2rem;
+  display: block;
+  margin: 0 auto;
+  width: 80%;
 }
 .heading1 {
-  margin-top: 1rem;
+  margin-top: 2.5rem;
   text-align: center;
-  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 25px;
   line-height: 28px;
   text-transform: uppercase;
 
@@ -16,8 +18,8 @@
 
 .cards-section {
   display: grid;
-  grid-template-columns: repeat(4, 23%);
-  gap: 2%;
+  grid-template-columns: repeat(2, 46%);
+  gap: 10%;
 }
 /* .cards-section .card:nth-child(2) {
   margin-top: 10rem;
@@ -152,4 +154,7 @@
 
   background: #f4f4f4;
   border-radius: 10px;
+}
+*{
+  font-family: 'Montserrat','sans-serif';
 }

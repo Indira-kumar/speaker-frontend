@@ -1,15 +1,17 @@
+.category{
+  margin-top: 150px;
+}
 .head1 {
-  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
-  font-size: xx-large;
+  font-size: 25px;
+  margin-top: 15px;
   text-transform: uppercase;
   text-align: center;
   color: #000000;
   margin-bottom: 0.8rem;
 }
 .desc {
-  font-family: Roboto;
   font-style: normal;
   font-weight: 300;
   text-align: center;
@@ -49,6 +51,8 @@
   justify-content: space-around;
 }
 .fpo-card {
+  color: #3a3a3a;
+  margin-top: 35px;
   text-align: center;
 }
 .fpoc-head {
@@ -57,7 +61,6 @@
   font-weight: 500;
   font-size: x-large;
   text-align: center;
-  color: #9a9696;
   margin-bottom: 0.5rem;
 }
 .fpoc-subhead {
@@ -66,7 +69,6 @@
   font-weight: 300;
   font-size: larger;
   text-align: center;
-  color: #9a9696;
   margin-bottom: 1.2rem;
 }
 .fpoc-img {
@@ -82,7 +84,6 @@
   text-align: center;
   margin-top: 1rem;
   padding: 0 8rem;
-  color: #9a9696;
 }
 .fpoc-btn {
   padding: 0.7rem 2rem;
@@ -90,10 +91,12 @@
   background: #ffbf19;
   border-radius: 5px;
   margin-top: 0.8rem;
-  font-size: medium;
+  font-size: 15px;
 }
 .fpoc-btn:hover {
-  padding: 0.5rem 1rem;
-  transition: ease-in-out 0.25s;
-  box-shadow: 0 0 20px rgba(255, 217, 0, 0.55);
+  font-size: 17px;
+  transition: ease-in-out 0.5s;
+}
+*{
+  font-family: 'Montserrat','sans-serif';
 }

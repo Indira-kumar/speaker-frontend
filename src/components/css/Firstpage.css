@@ -4,8 +4,17 @@
 }
 .speaker{
   position: relative;
+  overflow:hidden;
+  display:block;
+  height: 760px;
 }
-.speaker .btn {
+#image-overflow1{
+  margin-bottom: -330px;
+}
+#image-overflow2{
+  margin-bottom: -300px;
+}
+.speaker .bg-btn {
   outline: none;
   border: none;
   padding: 1rem 3.5rem;
@@ -13,19 +22,21 @@
   border-radius: 10px;
   font-family: Roboto;
   font-weight: 500;
-  font-size: large;
+  font-size: 18px;
   line-height: 14px;
   margin-bottom: 1rem;
 }
-.speaker .btn:hover{
-  font-size: medium;
-  transition: ease-in-out 0.25s;
-  box-shadow: 0 0 20px rgba(250, 250, 250, 0.85);
-  padding: 0.8rem 1.5rem;
+.speaker .relative-up{
+  position: relative !important;
+  bottom: 140px !important;
+}
+.speaker .bg-btn:hover{
+  font-size: 20px;
+  transition: ease-in-out 0.5s;
 }
 .fp-text{
   position: absolute;
-  bottom: 3rem;
+  bottom: 5rem;
   width: 100%;
   text-align: center;
 }
@@ -57,7 +68,7 @@
   margin-bottom: 0;
 }
 .fpae-heading{
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 100;
   color: rgba(154, 150, 150, 1);
 
@@ -70,12 +81,72 @@
   background: rgba(52, 52, 52, 0.65);
   padding:30% 0;
   text-align: center;
+  
 }
 .fp-addevent .fpae-imgtext{
-  font-size: 7rem;
+  font-size: 5rem;
   color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  color: black;
 }
 .fp-addevent .fp-text .two{
   margin-bottom: 1rem;
+}
+.container-video-bg{
+  width: 100%;
+  overflow:hidden;
+  display:block;
+  height: 760px;
+}
+#bg-video{
+  margin-bottom: -240px;
+  z-index: -99;
+  filter: brightness(55%);
+}
+.speaker-img{
+  height: 20%;
+  width: 85%;
+  margin: 10px auto;
+}
+.speaker-img > img{
+  background: rgba(52, 52, 52, 0.65);
+}
+.speaker-img .bg-btn {
+  outline: none;
+  border: none;
+  padding: 1rem 3.5rem;
+  background: #ffbf19;
+  border-radius: 10px;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 14px;
+  margin-bottom: 1rem;
+}
+.speaker-img .bg-btn:hover{
+  font-size: 20px;
+  transition: ease-in-out 0.5s;
+}
+.fp-addevent .fp-text-img{
+  position: absolute;
+  top:0;
+  height: 20%;
+  width: 85%;
+  background: rgba(52, 52, 52, 0.65);
+  text-align: center;
+  overflow: hidden;
+}
+.fp-text-img{
+  position: absolute;
+  bottom: 5rem;
+  width: 85%;
+  display: block;
+  text-align: center;
+  margin: 10px auto;
+}
+/* .fp-addevent .fp-text-img .two{
+  margin-bottom: 1rem;
+} */
+*{
+  font-family: 'Montserrat','sans-serif' !important;
 }

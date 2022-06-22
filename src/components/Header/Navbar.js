@@ -73,7 +73,7 @@ function Navbar(props) {
               </li>
             ) : (
               <li className="navright">
-                <a href="/login">SignIn</a>
+                <button> <a href="/login">SignIn</a></button>
               </li>
             )}
           </ul>

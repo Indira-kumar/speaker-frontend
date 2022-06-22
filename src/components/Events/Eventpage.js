@@ -363,7 +363,7 @@ const Eventpage = () => {
             <div className="speaker">
               <img
                 src={require("../images/EventsPage2.png")}
-                style={{ height: "100%" }}
+                style={{height:"100%" }}
                 alt={""}
               />
               <div
